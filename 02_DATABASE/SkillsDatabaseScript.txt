@@ -1,0 +1,89 @@
+drop database skills;
+create database skills;
+show databases;
+
+use skills;
+
+/*user-type table*/
+
+drop table tbl_user_type;
+create table tbl_user_type(
+fld_usertype_id int unsigned primary key not null,
+fld_usertype varchar(20)
+);
+
+/*user details*/
+
+drop table tbl_user;
+create table tbl_user(
+fld_user_id int unsigned primary key auto_increment,
+fld_username varchar(20), 
+fld_password varchar(100), 
+fld_usertype_id int unsigned, 
+fld_created_by varchar(20), 
+fld_created_date_time timestamp default '0000-00-00 00:00:00', 
+fld_modified_by varchar(20), 
+fld_modified_date_time timestamp default '0000-00-00 00:00:00',
+fld_activated_status bool default 0 not null,
+fld_invalid_login_attempts tinyint default 0 not null,
+foreign key (fld_usertype_id) references tbl_user_type(fld_usertype_id) on delete cascade
+);
+
+/* skill-set table */
+
+drop table tbl_skill_set;
+create table tbl_skill_set(
+fld_skillsetype_id int unsigned primary key not null,
+fld_skillset_type varchar(40)
+);
+
+/*skill details*/
+
+drop table tbl_skill_name;
+create table tbl_skill_name(
+fld_skill_id int unsigned primary key auto_increment,
+fld_skillname varchar(40), 
+fld_skillsetype_id int unsigned, 
+foreign key (fld_skillsetype_id) references tbl_skill_set(fld_skillsetype_id) on delete cascade
+);
+
+/*skill q&a*/
+
+drop table tbl_question_and_answers;
+create table tbl_question_and_answers(
+fld_question_id int unsigned primary key auto_increment,
+fld_question text not null,
+fld_answer_type varchar(15),
+fld_option1 varchar(255),
+fld_option1_weight int unsigned,
+fld_option2 varchar(255),
+fld_option2_weight int unsigned,
+fld_option3 varchar(255),
+fld_option3_weight int unsigned,
+fld_option4 varchar(255),
+fld_option4_weight int unsigned,
+fld_text_answer text,
+fld_text_answer_weight int unsigned,
+fld_skill_id int unsigned, 
+foreign key (fld_skill_id) references tbl_skill_name(fld_skill_id) on delete cascade
+);
+
+
+/*DB Backup and restore */
+
+drop table tbl_backup_record;
+create table tbl_backup_record(
+fld_software varchar(255),
+fld_mysql varchar(255),
+fld_database varchar(255),
+fld_backup_date timestamp default current_timestamp on update current_timestamp,
+fld_backup_status bool
+);
+
+drop table tbl_backup_details;
+create table tbl_backup_details(
+fld_db_version varchar(255),
+fld_user_name varchar(255),
+fld_path varchar(255),
+fld_filename varchar(255)
+);

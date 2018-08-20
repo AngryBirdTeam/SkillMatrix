@@ -1,0 +1,88 @@
+ 
+/* user type sample values */
+
+insert into tbl_user_type(fld_usertype_id, fld_usertype) values(1, "Administrator");
+insert into tbl_user_type(fld_usertype_id, fld_usertype) values(2, "Normal User");
+insert into tbl_user_type(fld_usertype_id, fld_usertype) values(3, "Privileged User");
+
+/* user details sample values */
+
+insert into tbl_user(fld_username, fld_password, fld_usertype_id, fld_activated_status) values("eik5kor", "da9bf4d845765287297080f0931a3ab4", 1, 1);
+insert into tbl_user(fld_username, fld_password, fld_usertype_id) values("vrv1kor", "b1705b432ebfd0037c0a4a426e85208c", 2);
+insert into tbl_user(fld_username, fld_password, fld_usertype_id) values("kmv7kor", "0a4f06e1a1ab2f33f6ad69f7a1ab0cc1", 3);
+insert into tbl_user(fld_username, fld_password, fld_usertype_id) values("bpb5kor", "bpb5kor", 3);
+ 
+/* skill-set sample values */
+
+insert into tbl_skill_set(fld_skillsetype_id, fld_skillset_type) values(1, "Programming/Scripting Languages");
+insert into tbl_skill_set(fld_skillsetype_id, fld_skillset_type) values(2, "Software Tools/Framework");
+insert into tbl_skill_set(fld_skillsetype_id, fld_skillset_type) values(3, "Operating System Knowledge");
+insert into tbl_skill_set(fld_skillsetype_id, fld_skillset_type) values(4, "Micro-Controllers Knowledge");
+insert into tbl_skill_set(fld_skillsetype_id, fld_skillset_type) values(5, "Design/Architecture Knowledge");
+insert into tbl_skill_set(fld_skillsetype_id, fld_skillset_type) values(6, "Analog/Digital Electronics");
+insert into tbl_skill_set(fld_skillsetype_id, fld_skillset_type) values(7, "Standards");
+insert into tbl_skill_set(fld_skillsetype_id, fld_skillset_type) values(8, "Certifications");
+insert into tbl_skill_set(fld_skillsetype_id, fld_skillset_type) values(9, "Process Methodologies");
+insert into tbl_skill_set(fld_skillsetype_id, fld_skillset_type) values(10, "Configuration Management");
+insert into tbl_skill_set(fld_skillsetype_id, fld_skillset_type) values(11, "Database Knowledge");
+insert into tbl_skill_set(fld_skillsetype_id, fld_skillset_type) values(12, "Miscellaneous");
+
+/* skill details sample values */
+
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("C", 1);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("C++", 1);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Java", 1);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("C#", 1);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Python", 1);
+
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Visual Studio", 2);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Matlab", 2);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Qt", 2);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("CodeBlocks", 2);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("IAR", 2);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Keil", 2);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Pycharm", 2);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Robot Framework", 2);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("CPPU Test Framework", 2);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("VxWorks", 2);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Micro-C", 2);
+
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Windows - XP/7/10", 3);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Linux - RedHat/Ubuntu", 3);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("MacOS", 3);
+
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("ARM based", 4);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Renesas", 4);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("TI(Texas) based", 4);
+
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Design Tools", 5);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Design Patterns", 5);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Design Techniques", 5);
+
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Analog Circuits Design", 6);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Digital Circuits Design", 6);
+
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Misra C Coding", 7);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("NSC(New System Controller) Architecture", 7);
+
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Design Pattern", 8);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Embedded Certification", 8);
+
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Kanban", 9);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Scrum - Agile", 9);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("SAFe - Scaled Agile Framework", 9);
+
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("SVN", 10);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("MKS", 10);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Git-Hub", 10);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Sharepoint", 10);
+
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("SQLite", 11);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("My-SQL", 11);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Oracle", 11);
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Postgre SQL", 11);
+
+insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Continuous Integration - Jenkins", 12);
+
+/*DB Backup details*/
+insert into tbl_backup_record(fld_software,fld_mysql,fld_database,fld_backup_status) values (1.0,5.0,1.0,0);
