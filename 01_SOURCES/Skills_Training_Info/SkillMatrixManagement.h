@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <QTreeWidgetItem>
 
-#include "DisplayAddSkills.h"
+#include "DisplayQA.h"
 #include "DisplayUpdateSkills.h"
 
 namespace Ui {
@@ -37,7 +37,7 @@ private:
 
     QStringList SkillSetNames;
 
-    DisplayAddSkills *displayAddSkillsPtr;
+    DisplayQA *displayQAPtr;
     DisplayUpdateSkills *displayUpdateSkillsPtr;
 
     bool isAddSkills;

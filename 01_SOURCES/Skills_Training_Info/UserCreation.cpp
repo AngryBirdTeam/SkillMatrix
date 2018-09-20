@@ -485,6 +485,8 @@ void UserCreation::UpdateUserCombobox()
 //                          selection
 void UserCreation::UserSelectionChanged(QString value)
 {
+    Q_UNUSED(value);
+
     ui->chkboxChangePwd->setChecked(false);
     ui->lineEditPassword->setText("");
     ui->lineEditcfrmPassword->setText("");

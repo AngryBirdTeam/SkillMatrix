@@ -9,6 +9,13 @@ QuestionPreview::QuestionPreview(QWidget *parent) :
     ui(new Ui::QuestionPreview)
 {
     ui->setupUi(this);
+    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
+
+    Init();
+
+    addWidgets();
+
+    disableWidgets();
 
 }
 
@@ -17,157 +24,184 @@ QuestionPreview::~QuestionPreview()
     delete ui;
 }
 
-void QuestionPreview :: displayQuestion()
+void QuestionPreview :: Init()
 {
-    questionInfoPtr = new QTextEdit();
-    questionInfoPtr->setText(questionInfo);
+    questionInfoPtr = nullptr;
+    textAns = nullptr;
+    rdbtnOption1 = nullptr;
+    rdbtnOption2 = nullptr;
+    rdbtnOption3 = nullptr;
+    rdbtnOption4 = nullptr;
+
+    chboxOption1 = nullptr;
+    chboxOption2 = nullptr;
+    chboxOption3 = nullptr;
+    chboxOption4 = nullptr;
+}
+
+void QuestionPreview :: addWidgets()
+{
+    questionInfoPtr = new QLabel();
+
+    rdbtnOption1 = new QRadioButton();
+    rdbtnOption2 = new QRadioButton();
+    rdbtnOption3 = new QRadioButton();
+    rdbtnOption4 = new QRadioButton();
+
+    chboxOption1 = new QCheckBox();
+    chboxOption2 = new QCheckBox();
+    chboxOption3 = new QCheckBox();
+    chboxOption4 = new QCheckBox();
+
+    textAns = new QTextEdit();
+
     ui->verticalLayout->addWidget(questionInfoPtr);
 
-    if(optionType == "Radio Button")
+    ui->verticalLayout->addWidget(rdbtnOption1);
+    ui->verticalLayout->addWidget(rdbtnOption2);
+    ui->verticalLayout->addWidget(rdbtnOption3);
+    ui->verticalLayout->addWidget(rdbtnOption4);
+
+    ui->verticalLayout->addWidget(chboxOption1);
+    ui->verticalLayout->addWidget(chboxOption2);
+    ui->verticalLayout->addWidget(chboxOption3);
+    ui->verticalLayout->addWidget(chboxOption4);
+
+    ui->verticalLayout->addWidget(textAns);
+}
+
+
+void QuestionPreview::displayQuestion()
+{
+    questionInfoPtr->setText(questionInfo);
+    questionInfoPtr->setVisible(true);
+
+    switch(optionCount)
     {
-        switch(optionCount)
+
+    case 1:
+        if(optionType == "Radio Button")
         {
-            case 2: rdbtnOption1 = new QRadioButton();
-                    rdbtnOption1->setText(option1Info);
-                    rdbtnOption2 = new QRadioButton();
-                    rdbtnOption2->setText(option2Info);
-                    ui->verticalLayout->addWidget(rdbtnOption1);
-                    ui->verticalLayout->addWidget(rdbtnOption2);
-            break;
-
-            case 3: rdbtnOption1 = new QRadioButton();
-                    rdbtnOption1->setText(option1Info);
-                    rdbtnOption2 = new QRadioButton();
-                    rdbtnOption2->setText(option2Info);
-                    rdbtnOption3 = new QRadioButton();
-                    rdbtnOption3->setText(option3Info);
-                    ui->verticalLayout->addWidget(rdbtnOption1);
-                    ui->verticalLayout->addWidget(rdbtnOption2);
-                    ui->verticalLayout->addWidget(rdbtnOption3);
-
-
-            break;
-
-            case 4: rdbtnOption1 = new QRadioButton();
-                    rdbtnOption1->setText(option1Info);
-                    rdbtnOption2 = new QRadioButton();
-                    rdbtnOption2->setText(option2Info);
-                    rdbtnOption3 = new QRadioButton();
-                    rdbtnOption3->setText(option3Info);
-                    rdbtnOption4 = new QRadioButton();
-                    rdbtnOption4->setText(option4Info);
-
-                    ui->verticalLayout->addWidget(rdbtnOption1);
-                    ui->verticalLayout->addWidget(rdbtnOption2);
-                    ui->verticalLayout->addWidget(rdbtnOption3);
-                    ui->verticalLayout->addWidget(rdbtnOption4);
-
-
-            break;
+            rdbtnOption1->setText(option1Info);
+            rdbtnOption1->setVisible(true);
 
         }
+        else if(optionType == "Check Box")
+        {
+            chboxOption1->setText(option1Info);
+            chboxOption1->setVisible(true);
+
+        }
+        else
+        {
+            textAns->setVisible(true);
+        }
+
+        break;
+    case 2:
+
+        if(optionType == "Radio Button")
+        {
+            rdbtnOption1->setText(option1Info);
+            rdbtnOption2->setText(option2Info);
+
+            rdbtnOption1->setVisible(true);
+            rdbtnOption2->setVisible(true);
+        }
+        else if(optionType == "Check Box")
+        {
+            chboxOption1->setText(option1Info);
+            chboxOption2->setText(option2Info);
+
+            chboxOption1->setVisible(true);
+            chboxOption2->setVisible(true);
+        }
+
+            break;
+
+    case 3:
+        if(optionType == "Radio Button")
+        {
+            rdbtnOption1->setText(option1Info);
+            rdbtnOption2->setText(option2Info);
+            rdbtnOption3->setText(option3Info);
+
+            rdbtnOption1->setVisible(true);
+            rdbtnOption2->setVisible(true);
+            rdbtnOption3->setVisible(true);
+        }
+        else if(optionType == "Check Box")
+        {
+            chboxOption1->setText(option1Info);
+            chboxOption2->setText(option2Info);
+            chboxOption3->setText(option3Info);
+
+            chboxOption1->setVisible(true);
+            chboxOption2->setVisible(true);
+            chboxOption3->setVisible(true);
+        }
+        break;
+
+    case 4:
+        if(optionType == "Radio Button")
+        {
+            rdbtnOption1->setText(option1Info);
+            rdbtnOption2->setText(option2Info);
+            rdbtnOption3->setText(option3Info);
+            rdbtnOption4->setText(option4Info);
+
+            rdbtnOption1->setVisible(true);
+            rdbtnOption2->setVisible(true);
+            rdbtnOption3->setVisible(true);
+            rdbtnOption4->setVisible(true);
+        }
+        else if(optionType == "Check Box")
+        {
+            chboxOption1->setText(option1Info);
+            chboxOption2->setText(option2Info);
+            chboxOption3->setText(option3Info);
+            chboxOption4->setText(option4Info);
+
+            chboxOption1->setVisible(true);
+            chboxOption2->setVisible(true);
+            chboxOption3->setVisible(true);
+            chboxOption4->setVisible(true);
+        }
+
+        break;
+
+    default:
+        textAns->setVisible(true);
+        break;
     }
-    else if(optionType == "Check Box")
-    {
 
-        switch(optionCount)
-        {
-            case 2: chboxOption1 = new QCheckBox();
-                    chboxOption1->setText(option1Info);
-                    chboxOption2 = new QCheckBox();
-                    chboxOption2->setText(option2Info);
-                    ui->verticalLayout->addWidget(chboxOption1);
-                    ui->verticalLayout->addWidget(chboxOption2);
-            break;
-
-            case 3: chboxOption1 = new QCheckBox();
-                    chboxOption1->setText(option1Info);
-                    chboxOption2 = new QCheckBox();
-                    chboxOption2->setText(option2Info);
-                    chboxOption3 = new QCheckBox();
-                    chboxOption3->setText(option3Info);
-                    ui->verticalLayout->addWidget(chboxOption1);
-                    ui->verticalLayout->addWidget(chboxOption2);
-                    ui->verticalLayout->addWidget(chboxOption3);
-
-
-            break;
-
-            case 4: chboxOption1 = new QCheckBox();
-                    chboxOption1->setText(option1Info);
-                    chboxOption2 = new QCheckBox();
-                    chboxOption2->setText(option2Info);
-                    chboxOption3 = new QCheckBox();
-                    chboxOption3->setText(option3Info);
-                    chboxOption4 = new QCheckBox();
-                    chboxOption4->setText(option4Info);
-                    ui->verticalLayout->addWidget(chboxOption1);
-                    ui->verticalLayout->addWidget(chboxOption2);
-                    ui->verticalLayout->addWidget(chboxOption3);
-                    ui->verticalLayout->addWidget(chboxOption4);
-
-            break;
-
-        }
-     }
-    else
-        {
-
-            textAns = new QTextEdit();
-            ui->verticalLayout->addWidget(textAns);
-        }
     this->show();
 }
 
-void QuestionPreview :: Delete()
+void QuestionPreview::disableWidgets()
 {
-    if(questionInfoPtr!=nullptr)
-    {
-        delete questionInfoPtr;
-    }
-    if(textAns!=nullptr)
-    {
-        delete textAns;
-    }
-    if(rdbtnOption1!=nullptr)
-    {
+    
+    questionInfoPtr->setVisible(false);
 
-        delete rdbtnOption1;
-    }
-    if(rdbtnOption2!=nullptr)
-    {
+    rdbtnOption1->setVisible(false);
+    rdbtnOption2->setVisible(false);
+    rdbtnOption3->setVisible(false);
+    rdbtnOption4->setVisible(false);
 
-        delete rdbtnOption2;
-    }
-    if(rdbtnOption3!=nullptr)
-    {
-        delete rdbtnOption3;
-    }
-    if(rdbtnOption4!=nullptr)
-    {
-        delete rdbtnOption4;
-    }
-    if(chboxOption1!=nullptr)
-    {
-        delete chboxOption1;
-    }
-    if(chboxOption2!=nullptr)
-    {
-        delete chboxOption2;
-    }
-    if(chboxOption3!=nullptr)
-    {
-        delete chboxOption3;
-    }
-    if(chboxOption4!=nullptr)
-    {
-        delete chboxOption4;
-    }
+    chboxOption1->setVisible(false);
+    chboxOption2->setVisible(false);
+    chboxOption3->setVisible(false);
+    chboxOption4->setVisible(false);
+
+    textAns->setVisible(false);
+    
 }
 
 void QuestionPreview::closeEvent(QCloseEvent *event)
 {
-    Delete();
+    Q_UNUSED(event);
+
+    disableWidgets();
 }
 
 

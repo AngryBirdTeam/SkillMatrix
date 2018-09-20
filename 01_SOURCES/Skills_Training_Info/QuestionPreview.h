@@ -5,6 +5,7 @@
 #include <QTextEdit>
 #include <QRadioButton>
 #include <QCheckBox>
+#include <QLabel>
 
 namespace Ui {
 class QuestionPreview;
@@ -25,7 +26,7 @@ public:
     QString option3Info;
     QString option4Info;
 
-    unsigned int optionCount=0;
+    unsigned int optionCount;
 
     void displayQuestion();
 
@@ -34,7 +35,7 @@ public:
 private:
     Ui::QuestionPreview *ui;
 
-    QTextEdit *questionInfoPtr;
+    QLabel *questionInfoPtr;
     QTextEdit *textAns;
     QRadioButton *rdbtnOption1;
     QRadioButton *rdbtnOption2;
@@ -46,7 +47,10 @@ private:
     QCheckBox *chboxOption3;
     QCheckBox *chboxOption4;
 
-    void Delete();
+    void Init();
+    void addWidgets();
+    void disableWidgets();
+
  private slots:
     void closeEvent (QCloseEvent *event);
 

@@ -5,9 +5,18 @@
         <file>Images/UserMgnt.png</file>
         <file>Images/NewUser.png</file>
         <file>Images/EditUser.png</file>
-        <file>Images/SkillMatrix.png</file>
         <file>Images/add.png</file>
         <file>Images/edit.png</file>
         <file>Images/SkillsIntro.png</file>
+        <file>Images/SkillGroup.png</file>
+        <file>Images/SkillMatrixMgnt.png</file>
+        <file>Images/SkillMatrix.png</file>
+        <file>Images/Dept_Graph_Example.png</file>
+        <file>Images/Individual_Graph_Example.png</file>
+        <file>Images/Team_Graph_Example.png</file>
+        <file>Images/NewSkill.png</file>
+        <file>Images/AboutSkillMatrix.png</file>
+        <file>Images/Grow_Skills.png</file>
+        <file>Images/Ready_Set_Go.png</file>
     </qresource>
 </RCC>

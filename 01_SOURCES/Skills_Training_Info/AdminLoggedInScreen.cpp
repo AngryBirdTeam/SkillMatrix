@@ -17,6 +17,8 @@ AdminLoggedInScreen::AdminLoggedInScreen(QWidget *parent) :
     connect(ui->radiobtnDBMgnt, SIGNAL(toggled(bool)), this, SLOT(enableOKBtn(bool)));
     connect(ui->radiobtnEmpMgnt, SIGNAL(toggled(bool)), this, SLOT(enableOKBtn(bool)));
     connect(ui->radiobtnSkillMatrix, SIGNAL(toggled(bool)), this, SLOT(enableOKBtn(bool)));
+
+    ui->radiobtnSkillMatrix->setChecked(true); // temporarily this is done
 }
 
 void AdminLoggedInScreen::initialize()
@@ -53,6 +55,8 @@ void AdminLoggedInScreen::adminSelection()
 
 void AdminLoggedInScreen::closeEvent (QCloseEvent *event)
 {
+    Q_UNUSED(event);
+
     //close the application
     this->close();
 }

@@ -1,23 +1,23 @@
-#ifndef DISPLAYADDSKILLS_H
-#define DISPLAYADDSKILLS_H
+#ifndef DISPLAYQA_H
+#define DISPLAYQA_H
 
 #include <QDialog>
 #include <QMessageBox>
-#include <QSignalMapper>
 
 #include "QuestionPreview.h"
+#include "DisplayInfo.h"
 
 namespace Ui {
-class DisplayAddSkills;
+class DisplayQA;
 }
 
-class DisplayAddSkills : public QDialog
+class DisplayQA : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit DisplayAddSkills(QWidget *parent = 0);
-    ~DisplayAddSkills();
+    explicit DisplayQA(QWidget *parent = 0);
+    ~DisplayQA();
 
     void UpdateCurrentSkillName(QString SkillName);
 
@@ -33,7 +33,6 @@ private slots:
     void SaveQuestionDetails();
 
     void UpdateQText();
-    void UpdateOptionInfo(const QString &, int);
     void UpdateOption1Info(const QString &);
     void UpdateOption1Weightage(const QString &);
     void UpdateOption2Info(const QString &);
@@ -44,21 +43,15 @@ private slots:
     void UpdateOption4Weightage(const QString &);
     void UpdateOptionType(const QString &);
     void UpdateTxtWeightage(const QString &);
-    bool validateOptionWeightage();
     bool validateOptionInfo();
     bool validateQuestionDetails();
-    bool validateOptionCount();
 
 private:
-    Ui::DisplayAddSkills *ui;
+    Ui::DisplayQA *ui;
 
-    unsigned int maxOptions = 4;
+    static unsigned int MAXOPTION_COUNT;
     unsigned int optionCount = 0;
 
-    bool clearFlag = false;
-    bool saveFlag = false;
-
-    QMessageBox PopUpMsg;
     QString ErrorMsg;
     QString questionInfo;
     QString textAnswer;
@@ -68,24 +61,31 @@ private:
     QString option3Info;
     QString option4Info;
 
-    QSignalMapper *mapper = new QSignalMapper();
+
     QuestionPreview *previewQtnPtr;
 
-    int option1Weight = 0;
-    int option2Weight = 0;
-    int option3Weight = 0;
-    int option4Weight = 0;
-    int textAnswerWeight = 0;
-    unsigned int skillId = 0;
+    int option1Weight;
+    int option2Weight;
+    int option3Weight;
+    int option4Weight;
+    int textAnswerWeight;
 
     QString SelectedSkillName;
 
-    void DisableOptionMenus();
-    void EnableOptionMenus();
-    void HideTextEditBoxes();
+    DisplayInfo *displayInfoPtr;
+
+    void Init();
+    void DisableMenus();
+
+    void HideMenus();
+    void ShowMenus();
+
     void UpdateOptionList();
-    void GetSkillId();
+
+    unsigned int GetSkillId();
     void validateText(QString);
+
+    void ClearOptionsInfo();
 };
 
-#endif // DISPLAYADDSKILLS_H
+#endif // DISPLAYQA_H

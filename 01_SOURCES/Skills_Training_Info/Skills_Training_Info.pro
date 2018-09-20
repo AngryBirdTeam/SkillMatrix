@@ -32,14 +32,18 @@ SOURCES += \
     AdminLoggedInScreen.cpp \
     UserData.cpp \
     UserInterface.cpp \
-    DisplayAddSkills.cpp \
     SkillMatrixDisplay.cpp \
     EmployeeManagement.cpp \
     DBManagement.cpp \
     SkillMatrixManagement.cpp \
     DisplayUpdateSkills.cpp \
     QuestionPreview.cpp \
-    DisplayInfo.cpp
+    DisplayInfo.cpp \
+    SkillGroupManagement.cpp \
+    TrainingDisplay.cpp \
+    TaskManagement.cpp \
+    AboutSkillMatrix.cpp \
+    DisplayQA.cpp
 
 HEADERS += \
     LoginScreen.h \
@@ -49,27 +53,35 @@ HEADERS += \
     AdminLoggedInScreen.h \
     UserData.h \
     UserInterface.h \
-    DisplayAddSkills.h \
     SkillMatrixDisplay.h \
     EmployeeManagement.h \
     DBManagement.h \
     SkillMatrixManagement.h \
     DisplayUpdateSkills.h \
     QuestionPreview.h \
-    DisplayInfo.h
+    DisplayInfo.h \
+    SkillGroupManagement.h \
+    TrainingDisplay.h \
+    TaskManagement.h \
+    AboutSkillMatrix.h \
+    DisplayQA.h
 
 FORMS += \
     LoginScreen.ui \
     UserCreation.ui \
     UserDetails.ui \
     AdminLoggedInScreen.ui \
-    DisplayAddSkills.ui \
     SkillMatrixDisplay.ui \
     EmployeeManagement.ui \
     DBManagement.ui \
     SkillMatrixManagement.ui \
     DisplayUpdateSkills.ui \
-    QuestionPreview.ui
+    QuestionPreview.ui \
+    SkillGroupManagement.ui \
+    TrainingDisplay.ui \
+    TaskManagement.ui \
+    AboutSkillMatrix.ui \
+    DisplayQA.ui
 
 RESOURCES += \
     icons.qrc

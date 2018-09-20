@@ -204,8 +204,8 @@ int main(int argc, char *argv[])
 
     LoginScreen loginScreenObj;
 
-    QTimer::singleShot(4000, &qSplashScreenObj, SLOT(close()) );
-    QTimer::singleShot(4000, &loginScreenObj, SLOT(show()) );
+    QTimer::singleShot(1000, &qSplashScreenObj, SLOT(close()) );
+    QTimer::singleShot(1000, &loginScreenObj, SLOT(show()) );
 
     return app.exec();
 }

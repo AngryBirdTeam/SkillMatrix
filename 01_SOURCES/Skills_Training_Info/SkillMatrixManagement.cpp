@@ -15,18 +15,18 @@ SkillMatrixManagement::SkillMatrixManagement(QWidget *parent) :
     IconRed = (QIcon(":/Images/Images/red.png"));
     IconGreen = (QIcon(":/Images/Images/green.png"));
 
-    displayAddSkillsPtr = new DisplayAddSkills();
-    displayAddSkillsPtr->setEnabled(false); // by default
+    displayQAPtr = new DisplayQA();
+    displayQAPtr->setEnabled(false); // by default
 
     displayUpdateSkillsPtr = new DisplayUpdateSkills();
     displayUpdateSkillsPtr->setEnabled(false); //by default
 
-    ui->gridLayout->addWidget(displayAddSkillsPtr);
+    ui->gridLayout->addWidget(displayQAPtr);
     ui->gridLayout->addWidget(displayUpdateSkillsPtr);
 
     isAddSkills = false;
 
-    connect(this, SIGNAL(ClearOnClose()), displayAddSkillsPtr, SLOT(ClearData()));
+    connect(this, SIGNAL(ClearOnClose()), displayQAPtr, SLOT(ClearData()));
 
     UpdateTreeWidgetWithSkillSets();
 }
@@ -133,15 +133,15 @@ void SkillMatrixManagement::updateSubSkillSetStatus(QTreeWidgetItem *item, int c
 
     if(isAddSkills)
     {
-        if( !displayAddSkillsPtr->isEnabled() )
+        if( !displayQAPtr->isEnabled() )
         {
-            displayAddSkillsPtr->setEnabled(true);
+            displayQAPtr->setEnabled(true);
         }
 
         //emit this signal to clear the add skills ui on change of skill
         emit ClearOnClose();
 
-        displayAddSkillsPtr->UpdateCurrentSkillName( item->text(column) );
+        displayQAPtr->UpdateCurrentSkillName( item->text(column) );
     }
     else
     {
@@ -158,31 +158,22 @@ void SkillMatrixManagement::DisplayPrepareSkillSet()
 
 //    qDebug() << "inside DisplayPrepareSkillSet b4 addWidget, no of items is " << count;
 
-//    ui->gridLayout->addWidget(displayAddSkillsPtr);
+    ui->gridLayout->addWidget(displayQAPtr);
 
 //    count = ui->gridLayout->count();
 
 //    qDebug() << "inside DisplayPrepareSkillSet after addWidget, no of items is " << count;
 
     displayUpdateSkillsPtr->setVisible(false);
-    displayAddSkillsPtr->setVisible(true);
+    displayQAPtr->setVisible(true);
     isAddSkills = true;
     this->show();
 }
 
 void SkillMatrixManagement::DisplaySkillSet()
 {
-//    unsigned int count = ui->gridLayout->count();
-
-//    qDebug() << "inside DisplaySkillSet b4 addWidget, no of items is " << count;
-
-//    ui->gridLayout->addWidget(displayUpdateSkillsPtr);
-
-//    count = ui->gridLayout->count();
-
-//    qDebug() << "inside DisplaySkillSet after addWidget, no of items is " << count;
     displayUpdateSkillsPtr->setVisible(true);
-    displayAddSkillsPtr->setVisible(false);
+    displayQAPtr->setVisible(false);
     isAddSkills = false;
 
     this->show();
@@ -190,21 +181,10 @@ void SkillMatrixManagement::DisplaySkillSet()
 
 void SkillMatrixManagement::closeEvent (QCloseEvent *event)
 {
-//    unsigned int count = ui->gridLayout->count();
-//    QWidget *widgetPtr;
-
-//    for(int index = 0; index < count; index++)
-//    {
-//        widgetPtr = ui->gridLayout->itemAt(index)->widget();
-
-//        if(widgetPtr != nullptr)
-//        {
-//            ui->gridLayout->removeWidget(widgetPtr);
-//        }
-//    }
+    Q_UNUSED(event);
 
     //on close disable the ui
-    displayAddSkillsPtr->setEnabled(false);
+    displayQAPtr->setEnabled(false);
     displayUpdateSkillsPtr->setEnabled(false);
 
     if(isAddSkills)

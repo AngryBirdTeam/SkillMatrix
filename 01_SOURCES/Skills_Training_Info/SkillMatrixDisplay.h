@@ -4,10 +4,16 @@
 #include <QMainWindow>
 #include <QMenu>
 #include <QToolButton>
+#include <QDockWidget>
+#include <QDesktopWidget>
+#include <QLabel>
 
-#include "UserDetails.h"
-#include "UserCreation.h"
+#include "AboutSkillMatrix.h"
 #include "SkillMatrixManagement.h"
+#include "SkillGroupManagement.h"
+#include "TrainingDisplay.h"
+#include "UserCreation.h"
+#include "UserDetails.h"
 
 namespace Ui {
 class SkillMatrixDisplay;
@@ -32,8 +38,15 @@ private slots:
     void NewUserSlot();
     void EditUserSlot();
     void ViewSkillSet();
-
+    void LoadAboutSlot();
     void AddSkillSlot(bool state);
+
+    void TrainDetailsDockedSlot(bool state);
+    void IndReportDockedSlot(bool state);
+    void TeamReportDockedSlot(bool state);
+    void DeptReportDockedSlot(bool state);
+
+    void resizeEvent(QResizeEvent *event);
 
 private:
     Ui::SkillMatrixDisplay *ui;
@@ -50,26 +63,55 @@ private:
     QAction *newUserAction;
     QAction *editUserAction;
     QAction *aboutAction;
+    QAction *addSkillToGrpAction;
+    QAction *editSkillGrpAction;
+    QAction *addSkillToMatrixAction;
+    QAction *editSkillInMatrixAction;
 
     QToolBar *userMgntToolbar;
+    QToolBar *skillGroupToolbar;
     QToolBar *skillMatrixToolbar;
 
     QToolButton *newUserToolbtn;
     QToolButton *editUserToolbtn;
+    QToolButton *skillGroupToolbtn;
     QToolButton *displaySkillMatrixToolbtn;
-    QToolButton *addSkillToMatrixToolbtn;
-    QToolButton *editSkillInMatrixToolbtn;
+    QToolButton *skillMatrixMgntToolbtn;
 
-    QMenu *UserMgntMenu;
+    QMenu *userMgntMenu;
+    QMenu *skillGrpMenu;
+    QMenu *skillMatrixMenu;
+
     QAction *newUserToolbtnAction;
     QAction *editUserToolbtnAction;
 
+    QDockWidget *dockTrainDetails;
+    QDockWidget *dockIndReport;
+    QDockWidget *dockTeamReport;
+    QDockWidget *dockDeptReport;
+
+    QLabel *lblLoggedUser;
+    QLabel *lblLoggedUserType;
+    QLabel *lblStatusDisplay;
+	
+    QString NameForHelpDisplay;
+    QString VersionForHelpDisplay;
+    QString CopyRightForHelpDisplay;
+
+    AboutSkillMatrix *aboutSkillMatrixPtr;
     UserCreation *userCreationPtr;
     SkillMatrixManagement *skillMatrixManagementPtr;
+    SkillGroupManagement *skillGroupManagementPtr;
+    TrainingDisplay *trainingDisplayPtr;
 
     void Init();
+    void CreateWidgets();
     void SetupMenuBar();
     void SetupToolBar();
+    void SetupDockWidgets();
+    void SetupStatusBar();
+    void SetAboutInfo();
+
 };
 
 #endif // MAINDISPLAY_H

@@ -79,12 +79,16 @@ void LoginScreen::init()
 
 void LoginScreen::closeEvent (QCloseEvent *event)
 {
+    Q_UNUSED(event);
+
     //close the application
     this->close();
 }
 
 void LoginScreen::onLogin(bool clickstate)
 {
+    Q_UNUSED(clickstate);
+
     ui->lbl_unlockmsg->clear();
 
     QString loginPwd = ui->lineedit_password->text();
@@ -107,16 +111,16 @@ void LoginScreen::onLogin(bool clickstate)
             errorMsg.append("\n");
             errorMsg.append( query.lastError().text() );
 
-            QMessageBox::critical(0, QObject::tr("DatabaseError"),
+            QMessageBox::critical(nullptr, QObject::tr("DatabaseError"),
                                   errorMsg);
             return;
         }
 
         if( query.next() )// user exists it enters
         {
-            unsigned int userTypeId = query.value(3).toInt(); // usertype id
+            unsigned int userTypeId = query.value(3).toUInt(); // usertype id
             QString dbPwd = query.value(2).toString(); // user password
-            unsigned int dbLoginAtmpt = query.value(9).toInt(); //user invalid login attempts
+            unsigned int dbLoginAtmpt = query.value(9).toUInt(); //user invalid login attempts
             bool userStatus = query.value(8).toBool();
 
             if(userStatus  && (dbLoginAtmpt >= 0 && dbLoginAtmpt < 3)) // status is active enter
@@ -126,7 +130,8 @@ void LoginScreen::onLogin(bool clickstate)
                 {
                     this->close();
 
-                    displayInfoPointer->DisplayMessage("Login Successful", DisplayInfo::MessageType::Normal);
+                    //displayInfoPointer->DisplayMessage("Login Successful", DisplayInfo::MessageType::Normal);
+                    qDebug() << "Login Successful";
 
                     strQuery = "UPDATE tbl_user SET fld_invalid_login_attempts='";
                     strQuery += "0";
@@ -255,6 +260,8 @@ void LoginScreen::onLogin(bool clickstate)
 
 void LoginScreen::closeLoginScreen(bool clickstate)
 {
+    Q_UNUSED(clickstate);
+
     this->close();
 }
 
