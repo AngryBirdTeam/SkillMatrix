@@ -46,8 +46,6 @@ private slots:
     void TeamReportDockedSlot(bool state);
     void DeptReportDockedSlot(bool state);
 
-    void resizeEvent(QResizeEvent *event);
-
 private:
     Ui::SkillMatrixDisplay *ui;
 

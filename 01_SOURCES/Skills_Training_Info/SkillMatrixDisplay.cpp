@@ -16,9 +16,22 @@ SkillMatrixDisplay::SkillMatrixDisplay(QWidget *parent) :
     SetupToolBar();
     SetupDockWidgets();
     SetupStatusBar();
-	
-	 SetAboutInfo();
 
+    SetAboutInfo();
+
+    //this is done to avoid tabbed docks
+    this->setDockOptions(QMainWindow::AnimatedDocks);
+
+    //set default position as (0,0)
+    this->move(0,0);
+
+    QDesktopWidget *desktop = QApplication::desktop();
+    int screenNo = desktop->primaryScreen();
+    int screenWidth = desktop->availableGeometry(screenNo).width();
+    int screenHeight = desktop->availableGeometry(screenNo).height();
+
+    //set default size of window
+    this->resize(screenWidth-50, screenHeight-50);
 }
 
 SkillMatrixDisplay::~SkillMatrixDisplay()
@@ -299,10 +312,8 @@ void SkillMatrixDisplay::SetupToolBar()
 
 void SkillMatrixDisplay::SetupDockWidgets()
 {
-    //User Details
+    //Training Details
     dockTrainDetails = new QDockWidget(tr("Training Details"), this);
-
-    dockTrainDetails->setAllowedAreas(Qt::LeftDockWidgetArea );
     dockTrainDetails->setWidget(trainingDisplayPtr);
 
     QDesktopWidget *desktopWid = QApplication::desktop();
@@ -318,12 +329,14 @@ void SkillMatrixDisplay::SetupDockWidgets()
     //Individual
     dockIndReport = new QDockWidget(tr("Individual Report"), this);
 
+#ifdef SampleGraphs
     QPixmap pixmap(":/Images/Images/Individual_Graph_Example.png");
     QLabel *maplabel = new QLabel();
-    maplabel->setMinimumSize(1008, 100);
+    maplabel->setMinimumSize(1375, 100);
     maplabel->setMaximumSize(1900, 1030);
     maplabel->setPixmap(pixmap);
     dockIndReport->setWidget(maplabel);
+#endif
 
     dockIndReport->resize(screenWidth/2, screenHeight/3);
 
@@ -336,7 +349,7 @@ void SkillMatrixDisplay::SetupDockWidgets()
 
     QPixmap pixmap1(":/Images/Images/Team_Graph_Example.png");
     QLabel *maplabel1 = new QLabel();
-    maplabel1->setMinimumSize(1008, 100);
+    maplabel1->setMinimumSize(1375, 100);
     maplabel1->setMaximumSize(1900, 1030);
     maplabel1->setPixmap(pixmap1);
     dockTeamReport->setWidget(maplabel1);
@@ -349,7 +362,7 @@ void SkillMatrixDisplay::SetupDockWidgets()
 
     QPixmap pixmap2(":/Images/Images/Dept_Graph_Example.png");
     QLabel *maplabel2 = new QLabel();
-    maplabel2->setMinimumSize(1008, 100);
+    maplabel2->setMinimumSize(1375, 100);
     maplabel2->setMaximumSize(1900, 1030);
     maplabel2->setPixmap(pixmap2);
     dockDeptReport->setWidget(maplabel2);
@@ -415,21 +428,6 @@ void SkillMatrixDisplay::SetupStatusBar()
     statusBar()->addWidget(lblStatusDisplay);
 
     qDebug()<< "StatusBar generated";
-}
-
-void SkillMatrixDisplay::resizeEvent(QResizeEvent *event)
-{
-    Q_UNUSED(event);
-
-    QDesktopWidget *desktop = QApplication::desktop();
-    int screenNo = desktop->primaryScreen();
-    int screenWidth = desktop->availableGeometry(screenNo).width();
-    int screenHeight = desktop->availableGeometry(screenNo).height();
-
-    dockTrainDetails->resize(screenWidth, screenHeight);
-    dockIndReport->resize(screenWidth, screenHeight/3);
-    dockTeamReport->resize(screenWidth, screenHeight/3);
-    dockDeptReport->resize(screenWidth, screenHeight/3);
 }
 
 void SkillMatrixDisplay::ExitApplSlot()
@@ -515,18 +513,18 @@ void SkillMatrixDisplay::AddSkillSlot(bool state)
 void SkillMatrixDisplay::SetAboutInfo()
 {
     //About Information Initialized
-   NameForHelpDisplay = "Skill Matrix";
-   VersionForHelpDisplay = "1.0";
-   CopyRightForHelpDisplay = QString::fromLatin1("©2018 Nefit@RBEI");
+    NameForHelpDisplay = "Skill Matrix";
+    VersionForHelpDisplay = "1.0";
+    CopyRightForHelpDisplay = QString::fromLatin1("©2018 Nefit@RBEI");
 
-   //Settings About Information
-   aboutSkillMatrixPtr = new AboutSkillMatrix();
-   aboutSkillMatrixPtr->SetAboutInfo(NameForHelpDisplay);
-   aboutSkillMatrixPtr->SetVersionInfo(VersionForHelpDisplay);
-   aboutSkillMatrixPtr->SetCopyRightInfo(CopyRightForHelpDisplay);
+    //Settings About Information
+    aboutSkillMatrixPtr = new AboutSkillMatrix();
+    aboutSkillMatrixPtr->SetAboutInfo(NameForHelpDisplay);
+    aboutSkillMatrixPtr->SetVersionInfo(VersionForHelpDisplay);
+    aboutSkillMatrixPtr->SetCopyRightInfo(CopyRightForHelpDisplay);
 }
 
 void SkillMatrixDisplay::LoadAboutSlot()
 {
-  aboutSkillMatrixPtr->DisplayAboutView();
+    aboutSkillMatrixPtr->DisplayAboutView();
 }

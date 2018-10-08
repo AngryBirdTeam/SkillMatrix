@@ -10,7 +10,6 @@ TaskManagement::TaskManagement(QWidget *parent) :
     ui(new Ui::TaskManagement)
 {
     ui->setupUi(this);
-
 }
 
 TaskManagement::TaskManagement(QString Type, QWidget *parent) :

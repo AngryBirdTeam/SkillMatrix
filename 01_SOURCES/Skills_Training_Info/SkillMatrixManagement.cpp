@@ -10,6 +10,7 @@ SkillMatrixManagement::SkillMatrixManagement(QWidget *parent) :
     ui(new Ui::SkillMatrixManagement)
 {
     ui->setupUi(this);
+    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
     //  <For displaying Icon>
     IconRed = (QIcon(":/Images/Images/red.png"));
