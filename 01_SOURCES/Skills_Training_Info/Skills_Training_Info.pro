@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT       += core gui sql charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -43,7 +43,12 @@ SOURCES += \
     TrainingDisplay.cpp \
     TaskManagement.cpp \
     AboutSkillMatrix.cpp \
-    DisplayQA.cpp
+    DisplayQA.cpp \
+    IndividualReport.cpp \
+    TeamReport.cpp \
+    DeptReport.cpp \
+    drilldownchart.cpp \
+    drilldownslice.cpp
 
 HEADERS += \
     LoginScreen.h \
@@ -64,7 +69,12 @@ HEADERS += \
     TrainingDisplay.h \
     TaskManagement.h \
     AboutSkillMatrix.h \
-    DisplayQA.h
+    DisplayQA.h \
+    IndividualReport.h \
+    TeamReport.h \
+    DeptReport.h \
+    drilldownchart.h \
+    drilldownslice.h
 
 FORMS += \
     LoginScreen.ui \
@@ -81,7 +91,10 @@ FORMS += \
     TrainingDisplay.ui \
     TaskManagement.ui \
     AboutSkillMatrix.ui \
-    DisplayQA.ui
+    DisplayQA.ui \
+    IndividualReport.ui \
+    TeamReport.ui \
+    DeptReport.ui
 
 RESOURCES += \
     icons.qrc

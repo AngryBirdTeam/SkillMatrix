@@ -9,8 +9,11 @@
 #include <QLabel>
 
 #include "AboutSkillMatrix.h"
+#include "DeptReport.h"
+#include "IndividualReport.h"
 #include "SkillMatrixManagement.h"
 #include "SkillGroupManagement.h"
+#include "TeamReport.h"
 #include "TrainingDisplay.h"
 #include "UserCreation.h"
 #include "UserDetails.h"
@@ -101,6 +104,9 @@ private:
     SkillMatrixManagement *skillMatrixManagementPtr;
     SkillGroupManagement *skillGroupManagementPtr;
     TrainingDisplay *trainingDisplayPtr;
+    IndividualReport *individualReportPtr;
+    TeamReport *teamReportPtr;
+    DeptReport *deptReportPtr;
 
     void Init();
     void CreateWidgets();

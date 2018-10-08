@@ -61,6 +61,30 @@ SkillMatrixDisplay::~SkillMatrixDisplay()
         delete skillGroupManagementPtr;
         skillGroupManagementPtr = nullptr;
     }
+
+    if(trainingDisplayPtr != nullptr)
+    {
+        delete trainingDisplayPtr;
+        trainingDisplayPtr = nullptr;
+    }
+
+    if(individualReportPtr != nullptr)
+    {
+        delete individualReportPtr;
+        individualReportPtr = nullptr;
+    }
+
+    if(teamReportPtr != nullptr)
+    {
+        delete teamReportPtr;
+        teamReportPtr = nullptr;
+    }
+
+    if(deptReportPtr != nullptr)
+    {
+        delete deptReportPtr;
+        deptReportPtr = nullptr;
+    }
 }
 
 void SkillMatrixDisplay::Init()
@@ -112,6 +136,9 @@ void SkillMatrixDisplay::Init()
     skillMatrixManagementPtr = nullptr;
     skillGroupManagementPtr = nullptr;
     trainingDisplayPtr = nullptr;
+    individualReportPtr = nullptr;
+    teamReportPtr = nullptr;
+    deptReportPtr = nullptr;
 }
 
 void SkillMatrixDisplay::CreateWidgets()
@@ -329,13 +356,19 @@ void SkillMatrixDisplay::SetupDockWidgets()
     //Individual
     dockIndReport = new QDockWidget(tr("Individual Report"), this);
 
-#ifdef SampleGraphs
+#ifdef SampleGraphs1
     QPixmap pixmap(":/Images/Images/Individual_Graph_Example.png");
     QLabel *maplabel = new QLabel();
     maplabel->setMinimumSize(1375, 100);
     maplabel->setMaximumSize(1900, 1030);
     maplabel->setPixmap(pixmap);
     dockIndReport->setWidget(maplabel);
+#else
+    dockIndReport->setMinimumSize(1375, 200);
+    dockIndReport->setMaximumSize(1900, 1030);
+
+    individualReportPtr = new IndividualReport(dockIndReport);
+    dockIndReport->setWidget(individualReportPtr);
 #endif
 
     dockIndReport->resize(screenWidth/2, screenHeight/3);
@@ -347,12 +380,22 @@ void SkillMatrixDisplay::SetupDockWidgets()
     //Team
     dockTeamReport = new QDockWidget(tr("Team Report"), this);
 
+#ifdef SampleGraphs1
     QPixmap pixmap1(":/Images/Images/Team_Graph_Example.png");
     QLabel *maplabel1 = new QLabel();
     maplabel1->setMinimumSize(1375, 100);
     maplabel1->setMaximumSize(1900, 1030);
     maplabel1->setPixmap(pixmap1);
     dockTeamReport->setWidget(maplabel1);
+#else
+    dockTeamReport->setMinimumSize(1375, 200);
+    dockTeamReport->setMaximumSize(1900, 1030);
+
+    teamReportPtr = new TeamReport(dockTeamReport);
+    dockTeamReport->setWidget(teamReportPtr);
+#endif
+
+    dockTeamReport->resize(screenWidth/2, screenHeight/3);
 
     addDockWidget(Qt::RightDockWidgetArea, dockTeamReport);
     QObject::connect( dockTeamReport, SIGNAL(topLevelChanged ( bool )), SLOT(TeamReportDockedSlot(bool)) );
@@ -360,12 +403,22 @@ void SkillMatrixDisplay::SetupDockWidgets()
     //Dept
     dockDeptReport = new QDockWidget(tr("Department Report"), this);
 
+#ifdef SampleGraphs1
     QPixmap pixmap2(":/Images/Images/Dept_Graph_Example.png");
     QLabel *maplabel2 = new QLabel();
     maplabel2->setMinimumSize(1375, 100);
     maplabel2->setMaximumSize(1900, 1030);
     maplabel2->setPixmap(pixmap2);
     dockDeptReport->setWidget(maplabel2);
+#else
+    dockDeptReport->setMinimumSize(1375, 200);
+    dockDeptReport->setMaximumSize(1900, 1030);
+
+    deptReportPtr = new DeptReport(dockDeptReport);
+    dockDeptReport->setWidget(deptReportPtr);
+#endif
+
+    dockDeptReport->resize(screenWidth/2, screenHeight/3);
 
     addDockWidget(Qt::RightDockWidgetArea, dockDeptReport);
     QObject::connect( dockDeptReport, SIGNAL(topLevelChanged ( bool )), SLOT(DeptReportDockedSlot(bool)) );
@@ -379,7 +432,16 @@ void SkillMatrixDisplay::IndReportDockedSlot(bool state)
     {
         QRect screenres = QApplication::desktop()->screenGeometry();
         dockIndReport->move( QPoint(screenres.x(), screenres.y()) );
-        dockIndReport->resize(screenres.width(), screenres.height());
+        dockIndReport->resize(screenres.width()-20, screenres.height()-80);
+
+#ifndef SampleGraphs1
+        individualReportPtr->resizeTabWidget(screenres.width() - 40, screenres.height() - 100);
+    }
+    else
+    {
+        individualReportPtr->resizeTabWidgetIntoDock();
+        qDebug() << "state is false";
+#endif
     }
 }
 
@@ -389,7 +451,16 @@ void SkillMatrixDisplay::TeamReportDockedSlot(bool state)
     {
         QRect screenres = QApplication::desktop()->screenGeometry();
         dockTeamReport->move( QPoint(screenres.x(), screenres.y()) );
-        dockTeamReport->resize(screenres.width(), screenres.height());
+        dockTeamReport->resize(screenres.width()-20, screenres.height()-80);
+
+#ifndef SampleGraphs1
+        teamReportPtr->resizeTeamReport(screenres.width() - 40, screenres.height() - 100);
+    }
+    else
+    {
+        teamReportPtr->resizeTeamReportIntoDock();
+        qDebug() << "state is false";
+#endif
     }
 }
 
@@ -400,6 +471,15 @@ void SkillMatrixDisplay::DeptReportDockedSlot(bool state)
         QRect screenres = QApplication::desktop()->screenGeometry();
         dockDeptReport->move( QPoint(screenres.x(), screenres.y()) );
         dockDeptReport->resize(screenres.width(), screenres.height());
+
+#ifndef SampleGraphs1
+        deptReportPtr->resizeDepartmentReport(screenres.width() - 40, screenres.height() - 100);
+    }
+    else
+    {
+        deptReportPtr->resizeDepartmentReportIntoDock();
+        qDebug() << "state is false";
+#endif
     }
 }
 
