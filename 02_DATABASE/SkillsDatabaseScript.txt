@@ -68,7 +68,6 @@ fld_skill_id int unsigned,
 foreign key (fld_skill_id) references tbl_skill_name(fld_skill_id) on delete cascade
 );
 
-
 /*DB Backup and restore */
 
 drop table tbl_backup_record;
@@ -87,3 +86,15 @@ fld_user_name varchar(255),
 fld_path varchar(255),
 fld_filename varchar(255)
 );
+
+/*Training plan and history*/
+
+drop table tbl_learning_plan;
+create table tbl_learning_plan(
+fld_skill_set_type varchar(40),
+fld_skill_name varchar(40),
+fld_due_date DATE,
+fld_username varchar(20),
+fld_status varchar(40)
+);
+

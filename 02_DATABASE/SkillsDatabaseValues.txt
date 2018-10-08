@@ -86,3 +86,14 @@ insert into tbl_skill_name(fld_skillname, fld_skillsetype_id) values("Continuous
 
 /*DB Backup details*/
 insert into tbl_backup_record(fld_software,fld_mysql,fld_database,fld_backup_status) values (1.0,5.0,1.0,0);
+
+/* question and answers sample details */
+insert into tbl_question_and_answers(fld_question, fld_answer_type, fld_option1, fld_option1_weight, fld_option2, fld_option2_weight, fld_skill_id) values("Who invented C?", "Radio Button", "Dennis Ritche", 100, "Linus Torvald", 0, 1);
+insert into tbl_question_and_answers(fld_question, fld_answer_type, fld_text_answer, fld_text_answer_weight, fld_skill_id) values("What is your name?", "Text Box", "User Name", 100, 2);
+
+/* Learning History Sample Details */
+insert into tbl_learning_plan(fld_skill_set_type, fld_skill_name, fld_due_date, fld_username, fld_status) VALUES("Programming/Scripting Languages", "Python", "2018-10-25", "kmv7kor", "In Progress"); 
+insert into tbl_learning_plan(fld_skill_set_type, fld_skill_name, fld_due_date, fld_username, fld_status) VALUES("Configuration Management", "Git-Hub", "2018-10-25", "kmv7kor", "Completed"); 
+insert into tbl_learning_plan(fld_skill_set_type, fld_skill_name, fld_due_date, fld_username, fld_status) VALUES("Database Knowledge", "My-SQL", "2018-11-15", "kmv7kor", "Start");
+insert into tbl_learning_plan(fld_skill_set_type, fld_skill_name, fld_due_date, fld_username, fld_status) VALUES("Configuration Management", "Git-Hub", "2018-10-25", "bpb5kor", "In Progress");
+

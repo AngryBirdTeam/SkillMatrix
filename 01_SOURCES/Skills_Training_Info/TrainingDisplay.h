@@ -17,6 +17,14 @@ public:
 
 private:
     Ui::TrainingDisplay *ui;
+
+    int learningPlanTblColCount;
+    int learningHistoryTblColCount;
+
+    void Init();
+    void DisableTables();
+    void ShowLearningPlan(QString);
+    void ShowLearningHistory(QString);
 };
 
 #endif // TRAININGDISPLAY_H
