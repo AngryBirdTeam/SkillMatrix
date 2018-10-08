@@ -356,7 +356,7 @@ void SkillMatrixDisplay::SetupDockWidgets()
     //Individual
     dockIndReport = new QDockWidget(tr("Individual Report"), this);
 
-#ifdef SampleGraphs1
+#ifdef SampleGraphs
     QPixmap pixmap(":/Images/Images/Individual_Graph_Example.png");
     QLabel *maplabel = new QLabel();
     maplabel->setMinimumSize(1375, 100);
@@ -380,7 +380,7 @@ void SkillMatrixDisplay::SetupDockWidgets()
     //Team
     dockTeamReport = new QDockWidget(tr("Team Report"), this);
 
-#ifdef SampleGraphs1
+#ifdef SampleGraphs
     QPixmap pixmap1(":/Images/Images/Team_Graph_Example.png");
     QLabel *maplabel1 = new QLabel();
     maplabel1->setMinimumSize(1375, 100);
@@ -403,7 +403,7 @@ void SkillMatrixDisplay::SetupDockWidgets()
     //Dept
     dockDeptReport = new QDockWidget(tr("Department Report"), this);
 
-#ifdef SampleGraphs1
+#ifdef SampleGraphs
     QPixmap pixmap2(":/Images/Images/Dept_Graph_Example.png");
     QLabel *maplabel2 = new QLabel();
     maplabel2->setMinimumSize(1375, 100);
@@ -434,7 +434,7 @@ void SkillMatrixDisplay::IndReportDockedSlot(bool state)
         dockIndReport->move( QPoint(screenres.x(), screenres.y()) );
         dockIndReport->resize(screenres.width()-20, screenres.height()-80);
 
-#ifndef SampleGraphs1
+#ifndef SampleGraphs
         individualReportPtr->resizeTabWidget(screenres.width() - 40, screenres.height() - 100);
     }
     else
@@ -453,7 +453,7 @@ void SkillMatrixDisplay::TeamReportDockedSlot(bool state)
         dockTeamReport->move( QPoint(screenres.x(), screenres.y()) );
         dockTeamReport->resize(screenres.width()-20, screenres.height()-80);
 
-#ifndef SampleGraphs1
+#ifndef SampleGraphs
         teamReportPtr->resizeTeamReport(screenres.width() - 40, screenres.height() - 100);
     }
     else
@@ -472,7 +472,7 @@ void SkillMatrixDisplay::DeptReportDockedSlot(bool state)
         dockDeptReport->move( QPoint(screenres.x(), screenres.y()) );
         dockDeptReport->resize(screenres.width(), screenres.height());
 
-#ifndef SampleGraphs1
+#ifndef SampleGraphs
         deptReportPtr->resizeDepartmentReport(screenres.width() - 40, screenres.height() - 100);
     }
     else
